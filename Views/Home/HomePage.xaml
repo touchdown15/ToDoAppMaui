@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:TODOApp.Models.Icons"
+             xmlns:item="clr-namespace:TODOApp.Views.Home.Components"
+             x:Class="TODOApp.Views.Home.HomePage">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#b1582e"/>
+    </ContentPage.Behaviors>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label
+                Text="Lista de Tarefas"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <toolkit:Expander>
+                <toolkit:Expander.Header>
+                    <Frame Padding="11" BackgroundColor="#b1582e" CornerRadius="20" HasShadow="False">
+                        <HorizontalStackLayout HorizontalOptions="Fill" Spacing="130">
+                            <Label Text="Todas as Tarefas"
+                                   Padding="10,0,0,0"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium" />
+                            <Label Style="{StaticResource FontAwesomeIcons}"
+                                   Text="{x:Static models:FAIcon.Plus}"
+                                   TextColor="White"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </HorizontalStackLayout>
+                    </Frame>
+                </toolkit:Expander.Header>
+                <item:CheckItem x:Name="checkItem" Loaded="OnCheckItemLoaded" />
+            </toolkit:Expander>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TODOApp.Models.Icons"
+             x:Class="TODOApp.Views.Home.Components.CheckItem">
+
+    <VerticalStackLayout Padding="8">
+        <ListView x:Name="listView"
+              ItemsSource="{Binding CheckItems}"
+              HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="5" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding Done}" CheckedChanged="OnCheckedChanged" Color="#b1582e"/>
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                                <Label Text="{Binding Name}"  VerticalOptions="Center" FontAttributes="Bold"/>
+                                <Label Text="{Binding Description}"  VerticalOptions="Center"/>
+                            </StackLayout>
+                            <Label Style="{StaticResource FontAwesomeSolidIcon}"
+                                   Text="{x:Static models:FAIconsSolid.Pen}"
+                                   TextColor="black"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center"
+                                   Margin="0,0,15,0">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTapGestureRecognizerTappedDelete"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label Style="{StaticResource FontAwesomeSolidIcon}"
+                                   Text="{x:Static models:FAIconsSolid.Trash}"
+                                   TextColor="black"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTapGestureRecognizerTappedDelete"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentView>
