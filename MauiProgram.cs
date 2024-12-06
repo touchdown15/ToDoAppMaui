@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using TODOApp.Services;
+using TODOApp.Views.Home;
 
 
 namespace TODOApp
@@ -23,6 +25,8 @@ namespace TODOApp
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<TODOApiService>();
+            builder.Services.AddTransient<HomePage>();
 
             return builder.Build();
         }

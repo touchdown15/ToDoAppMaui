@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TODOApp.Views.Home.Forms"
-             Title="Adicionar">
+             x:Class="TODOApp.Views.Home.Forms">
     <ContentPage.Content>
-        <StackLayout Margin="20" Spacing="10" VerticalOptions="StartAndExpand">
-            <Label Text="Nome"/>
-            <Entry Text="{Binding Name}"/>
+        <Grid RowDefinitions="Auto, *">
+            <Grid HeightRequest="50" Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Label Text="Descrição"/>
-            <Entry Text="{Binding Description}"/>
+                <Button Text="Voltar" 
+                        Command="{Binding BackCommand}"
+                        BackgroundColor="Transparent"
+                        TextColor="Black"
+                        HeightRequest="50"/>
 
-            <Button BackgroundColor="#b1582e" Clicked="OnSaveOrEdit" Text="Salvar" MaximumWidthRequest="100" CornerRadius="100"/>
-        </StackLayout>
+                <Label Grid.Column="1"
+                       Text="{Binding Title}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="StartAndExpand"
+                       FontAttributes="Bold"
+                       FontSize="18" />
+            </Grid>
+            <StackLayout Grid.Row="1" Margin="20" Spacing="10" VerticalOptions="StartAndExpand">
+                <Label Text="Nome"/>
+                <Entry Text="{Binding ToDoItem.Name}"/>
+
+                <Label Text="Descrição"/>
+                <Entry Text="{Binding ToDoItem.Description}"/>
+
+                <Button BackgroundColor="#b1582e" Command="{Binding SaveCommand}" Text="Salvar" MaximumWidthRequest="100" CornerRadius="100"/>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -24,7 +24,7 @@
                                    VerticalOptions="Center"
                                    Margin="0,0,15,0">
                                 <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnTapGestureRecognizerTappedDelete"/>
+                                    <TapGestureRecognizer Tapped="OnTapGestureRecognizerTappedEdit"/>
                                 </Label.GestureRecognizers>
                             </Label>
                             <Label Style="{StaticResource FontAwesomeSolidIcon}"

@@ -78,10 +78,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Services\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="Views\Home\Components\CheckItem.xaml.cs">
 	    <DependentUpon>CheckItem.xaml</DependentUpon>
 	  </Compile>

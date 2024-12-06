@@ -8,8 +8,8 @@
     Title="TODOApp">
 
     <ShellContent
-        Title="Home"
         ContentTemplate="{DataTemplate local:HomePage}"
         Route="HomePage" />
+    <ShellContent Route="Forms" ContentTemplate="{DataTemplate local:Forms}" />
 
 </Shell>

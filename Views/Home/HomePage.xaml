@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:models="clr-namespace:TODOApp.Models.Icons"
@@ -9,41 +8,76 @@
         <toolkit:StatusBarBehavior StatusBarColor="#b1582e"/>
     </ContentPage.Behaviors>
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <Label
-                Text="Lista de Tarefas"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-            <toolkit:Expander>
-                <toolkit:Expander.Header>
-                    <Frame Padding="11" BackgroundColor="#b1582e" CornerRadius="20" HasShadow="False">
-                        <HorizontalStackLayout HorizontalOptions="Fill" Spacing="130">
-                            <Label Text="Todas as Tarefas"
-                                   Padding="10,0,0,0"
-                                   TextColor="White"
-                                   FontAttributes="Bold"
-                                   FontSize="Medium" />
-                            <Label Style="{StaticResource FontAwesomeIcons}"
-                                   Text="{x:Static models:FAIcon.Plus}"
-                                   TextColor="White"
-                                   HorizontalOptions="End"
-                                   VerticalOptions="Center">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </HorizontalStackLayout>
-                    </Frame>
-                </toolkit:Expander.Header>
-                <item:CheckItem x:Name="checkItem" Loaded="OnCheckItemLoaded" />
-            </toolkit:Expander>
+        <Label Text="Lista de Tarefas"
+               Padding="0,50,0,0"
+               Style="{StaticResource Headline}"
+               SemanticProperties.HeadingLevel="Level1"
+               Grid.Row="0" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+        <toolkit:Expander Grid.Row="1" Padding="20">
+            <toolkit:Expander.Header>
+                <Frame Padding="11" BackgroundColor="#b1582e" CornerRadius="20" HasShadow="False">
+                    <HorizontalStackLayout HorizontalOptions="Fill" Spacing="150">
+                        <Label Text="Todas as Tarefas"
+                               Padding="10,0,0,0"
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               FontSize="Medium" />
+                        <Label Style="{StaticResource FontAwesomeIcons}"
+                               Text="{x:Static models:FAIcon.Plus}"
+                               TextColor="White"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </HorizontalStackLayout>
+                </Frame>
+            </toolkit:Expander.Header>
+            <item:CheckItem x:Name="checkItem" Loaded="OnCheckItemLoaded" />
+        </toolkit:Expander>
 
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Padding="30,0" Spacing="25">
+            </VerticalStackLayout>
+        </ScrollView>
+
+
+        <Grid Grid.Row="3" ColumnDefinitions="*,*" Padding="30">
+            <Button 
+                Text="Mock API" 
+                BackgroundColor="#b1582e" 
+                TextColor="White"
+                WidthRequest="120"
+                HeightRequest="60"
+                Clicked="OnClickGetApi"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Grid.Column="0" />
+
+            <Button 
+                Text="Error" 
+                BackgroundColor="#b1582e" 
+                TextColor="White"
+                WidthRequest="120"
+                HeightRequest="60"
+                Clicked="OnClickGetError"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Grid.Column="1" />
+        </Grid>
+    </Grid>
 </ContentPage>

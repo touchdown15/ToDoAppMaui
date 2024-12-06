@@ -1,25 +1,25 @@
-using TODOApp.Database.ToDoItem;
 using TODOApp.Models.ToDoItem;
+using TODOApp.Services;
+using TODOApp.ViewModels.Home;
 
 namespace TODOApp.Views.Home;
 
 public partial class Forms : ContentPage
 {
-	public Forms()
-	{
-		InitializeComponent();
-    }
-
-    public async void OnSaveOrEdit(object sender, EventArgs e)
+    private readonly FormsViewModel _viewModel;
+    public Forms()
     {
-
-        if (BindingContext is ToDoItemModel viewModel)
-        {
-            var todo = (ToDoItemModel)BindingContext;
-            todo.Done = false;
-            ToDoItemDatabase db = await ToDoItemDatabase.instance;
-            await db.SaveItemAsync(todo);
-            await Navigation.PopAsync();
-        }
+        InitializeComponent();
+        _viewModel = new FormsViewModel();
+        BindingContext = _viewModel;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        var data = NavigationService.GetData<ToDoItemModel>("Forms");
+        _viewModel.Initialize(data);
+    }
+
 }

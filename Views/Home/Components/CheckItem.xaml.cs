@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using TODOApp.Database.ToDoItem;
 using TODOApp.Models.ToDoItem;
+using TODOApp.Services;
 
 
 namespace TODOApp.Views.Home.Components;
@@ -23,7 +25,6 @@ public partial class CheckItem : ContentView
             var item = checkBox.BindingContext as ToDoItemModel;
             if (item != null)
             {
-                item.Done = !item.Done;
                 ToDoItemDatabase db = await ToDoItemDatabase.instance;
                 await db.SaveItemAsync(item);
             }
@@ -51,6 +52,29 @@ public partial class CheckItem : ContentView
                 } 
             }
         }
+    }
+
+    private async void OnTapGestureRecognizerTappedEdit(object sender, TappedEventArgs args)
+    {
+        var label = sender as Label;
+        NavigationService.ClearData("Forms");
+        if (label != null)
+        {
+            var item = label.BindingContext as ToDoItemModel;
+            if (item != null)
+            {
+                NavigationService.AddData("Forms", item);
+                try
+                {
+                    await Shell.Current.GoToAsync("///Forms");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Erro ao navegar: {ex.Message}");
+                }
+            }
+        }
+        
     }
 
     private async void LoadingNewItems(ToDoItemDatabase db)
